@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using WishList.Model;
+using WishList.Models;
 
 namespace WishList.Data
 {
