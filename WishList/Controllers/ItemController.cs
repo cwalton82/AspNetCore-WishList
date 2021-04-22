@@ -14,16 +14,18 @@ namespace WishList.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public ItemController(ApplicationDbContext Context)
+        public ItemController(ApplicationDbContext context)
         {
-            _context = Context;
+            _context = context;
         }
+
+
 
 
         // GET: /<controller>/ Copmlete NUMBER 2
         public IActionResult Index()
         {
-            return View("Index");
+            return View("Index", _context.Items.ToList());
         }
 
         [HttpGet]
@@ -35,18 +37,18 @@ namespace WishList.Controllers
         [HttpPost]
         public IActionResult Create(Item item)
         {
-            _context.Add(item);
+            _context.Items.Add(item);
             _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(int Id)
-        {
-            var item = _context.Items.Find(Id);
-            _context.Remove(item);
-            _context.SaveChanges();
 
+        public IActionResult Delete(int id)
+        {
+            var item = _context.Items.FirstOrDefault(item => item.Id == id);
+            _context.Items.Remove(item);
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
