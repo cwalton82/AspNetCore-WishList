@@ -20,9 +20,6 @@ namespace WishList.Controllers
         }
 
 
-
-
-        // GET: /<controller>/ Copmlete NUMBER 2
         public IActionResult Index()
         {
             return View("Index", _context.Items.ToList());
